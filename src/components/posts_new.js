@@ -6,7 +6,7 @@ import {createPost} from '../actions';
 
 class PostsNew extends Component {
 
-	
+
 
 	renderField(field) {
 		const { meta: {touched, error} } = field;
@@ -21,7 +21,7 @@ class PostsNew extends Component {
 					{...field.input}
 				 />
 				 <div className="text-help">
-				{touched ? error : ''}	
+				{touched ? error : ''}
 				</div>
 			</div>
 		);
@@ -40,19 +40,19 @@ class PostsNew extends Component {
 		return (
 			//this.onSubmit on meidän määriittelemä, pitää vain bindata koska callback
 
-			// kaksi tapaa lisätä css sääntöjä: joko suoraan Link tai sitten syle.css
+			// kaksi tapaa lisätä css sääntöjä: joko suoraan Link ja className tai sitten syle.css
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-				<Field 
+				<Field
 					label="Title"
 					name="title"
 					component={this.renderField}
 				/>
-				<Field 
+				<Field
 					label="Categories"
 					name="categories"
 					component={this.renderField}
 				/>
-				<Field 
+				<Field
 					label="Post Content"
 					name="content"
 					component={this.renderField}
@@ -71,15 +71,15 @@ function validate(values) {
 
 	// validate the inputs from 'values'
 	if(!values.title || values.title.length < 3) {
-		errors.title = "Enter a title that is at least 3 characters!";	
+		errors.title = "Enter a title that is at least 3 characters!";
 	}
 
 	if(!values.categories) {
-		errors.categories = "Enter some categories!";	
+		errors.categories = "Enter some categories!";
 	}
 
 	if(!values.content) {
-		errors.content = "Enter some content!";	
+		errors.content = "Enter some content!";
 	}
 
 
@@ -87,6 +87,7 @@ function validate(values) {
 	return errors;
 }
 
+//reduxForm on vähän niin kuin connect
 export default reduxForm({
 	// validointi tulee redux formeista
 	 validate,

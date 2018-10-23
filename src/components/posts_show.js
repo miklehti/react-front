@@ -8,7 +8,7 @@ class PostsShow extends Component {
 
 	componentDidMount(){
 		//id tulee wild cardista index.js routessa oli :id
-		//ei haetat turhaa jos jo on 
+		//ei haetat turhaa jos jo on
 		if(!this.props.post){
 			const {id} = this.props.match.params;
 			this.props.fetchPost(id);
@@ -47,9 +47,12 @@ class PostsShow extends Component {
 }
 
 //eli kiinnostaa vain posts property statesta.
+// eka argumentti aina state tai tässä posts revittynä statesta.
 // toinen argumentti aina ownProps
+// kompoenenti sisällä this.props === ownProps
+//eli voidaa´n käyttää wild cardia ja hakea [ownProps.match.params.id joka on siis sama kuin jos käyttäisi this.props.match.params.id komponentin sisällä
 function mapStateToProps({posts}, ownProps) {
-	// eli ei näin, palauttaisi koko listan posts => ownProps auttaa
+	// eli ei näin, palauttaisi koko listan posts => ownProps auttaa. Jos käyttäisi return { posts } niin sitä voisi käyttää jotenkin että posts[this.props.matc.params.id]
 	//return { posts };
 	// eli mapStateToProps voisi olla omassa filussa jossain isossa aplikaatiosas, eli nyt vain se aktiivinen tulee componentille.
 	return {post: posts[ownProps.match.params.id]};
